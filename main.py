@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.alert import Alert
+import time
 
 
 def run():
@@ -27,6 +28,12 @@ def run():
         Alert(driver).accept()
         # ok we are ready for scrolling
 
+        # find comments section
+        comments_section = driver.find_element_by_id('comments')
+        # scroll to it
+        driver.execute_script('arguments[0].scrollIntoView();', comments_section)
+
+        time.sleep(60)  # one min break before exit
         # close browser window once we are done
         driver.close()
 
