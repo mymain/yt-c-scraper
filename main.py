@@ -55,9 +55,9 @@ def run():
 
 def page_is_loaded(driver):
     while True:
+        # test document state
         # https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState
-        state = driver.execute_script('return document.readyState')
-        if state == 'complete':
+        if driver.execute_script('return document.readyState') == 'complete':
             return True
         else:
             yield False
