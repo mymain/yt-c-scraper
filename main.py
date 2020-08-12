@@ -33,6 +33,17 @@ def run():
         # scroll to it
         driver.execute_script('arguments[0].scrollIntoView();', comments_section)
 
+        # TODO change for loader ready state
+        time.sleep(10)  # not nice but working
+
+        # get comments contents these are arrays
+        users = driver.find_elements_by_id('author-text')
+        comments = driver.find_elements_by_id('content-text')
+
+        for user, comment in zip(users, comments):
+            print(user.text + ':')
+            print(comment.text + '\n')
+
         time.sleep(60)  # one min break before exit
         # close browser window once we are done
         driver.close()
