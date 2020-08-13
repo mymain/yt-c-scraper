@@ -36,6 +36,14 @@ def run():
         # TODO change for loader ready state
         time.sleep(10)  # not nice but working
 
+        for x in range(100):
+            continuations_section = driver\
+                .find_element_by_css_selector('#continuations .ytd-item-section-renderer:last-child')
+            driver.execute_script('arguments[0].scrollIntoView();', continuations_section)
+
+            time.sleep(5)
+            # detect end of comments?
+
         # get comments contents these are arrays
         users = driver.find_elements_by_id('author-text')
         comments = driver.find_elements_by_id('content-text')
