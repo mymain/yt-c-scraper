@@ -43,18 +43,21 @@ def run():
                     .find_element_by_css_selector('#continuations .ytd-item-section-renderer:last-child')
                 driver.execute_script('arguments[0].scrollIntoView();', comments_section_end)
 
+                # todo remove sleep
                 time.sleep(5)
-                # detect end of comments?
 
+            # when there is no more comments #continuations container is removed
+            # and we are getting NoSuchElementException so we know that
+            # we are at the end of comments list so we can break the while loop
             except NoSuchElementException:
                 print('Comments end')
                 break
 
         print('Ok we are ready - all comments are loaded')
 
-        # get comments contents these are arrays
+        # get all comments contents these are arrays
         users = driver.find_elements_by_id('author-text')
-        comments = driver.find_elemefints_by_id('content-text')
+        comments = driver.find_elements_by_id('content-text')
 
         for user, comment in zip(users, comments):
             print(user.text + ':')
